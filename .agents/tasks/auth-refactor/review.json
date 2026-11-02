@@ -1,0 +1,9 @@
+{
+  "verdict": "CHANGES_REQUESTED",
+  "findings": [
+    "Validation duplication — AuthFormField._validate reimplements domain-layer validation (email format, password length, required fields). Move all validation to domain use cases, making form validators thin adapters that call domain validation synchronously or use simplified format checks only. Remove duplicate regex and length checks from the molecule.",
+    "Password visibility state in molecule — AuthFormField manages `_obscureText` as internal state, making it a StatefulWidget that mixes composition with behavior. Extract password visibility to atoms layer as a pure stateless component receiving `obscureText` and `onToggle` from parent, or lift state to form organisms where it belongs functionally.",
+    "Phone sanitization in screen — RegisterScreen._submit contains business logic (`replaceAll(RegExp(r'[^\\d+]'), '')`) that should live in domain layer or at minimum in RegisterForm organism. Move formatting to RegisterProfileParams factory or use case preprocessing so the rule is enforced consistently wherever phone input is collected."
+  ],
+  "reviewDoc": "/Users/mariomelo/Documents/Proyectos personales/computacion_movil/.agents/tasks/auth-refactor/2026-11-01-210834-review.md"
+}
